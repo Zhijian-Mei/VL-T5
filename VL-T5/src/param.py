@@ -71,7 +71,7 @@ def parse_args(parse=True, **optional_kwargs):
     # Checkpoint
     parser.add_argument('--output', type=str, default='snap/test')
     parser.add_argument('--load', type=str, default=None, help='Load the model (usually the fine-tuned model).')
-    parser.add_argument('--from_scratch', action='store_true')
+    parser.add_argument('--from_scratch', type=str,action='store_true')
 
     # CPU/GPU
     parser.add_argument("--multiGPU", action='store_const', default=False, const=True)
