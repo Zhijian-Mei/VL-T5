@@ -7,7 +7,7 @@ PYTHONPATH=$PYTHONPATH:./src \
 python -m torch.distributed.launch \
     --nproc_per_node=$1 \
     src/vcr.py \
-        --from_scratch 1
+        --from_scratch 1 \
         --distributed --multiGPU --fp16 \
         --train train \
         --valid val \
