@@ -6,7 +6,7 @@ output=snap/vqa/$name
 python -m torch.distributed.launch \
     --nproc_per_node=$1 \
     ../src/vqa.py \
-        --from_scratch 1 \
+        --from_scratch True \
         --distributed --multiGPU \
         --train karpathy_train \
         --valid karpathy_val \
