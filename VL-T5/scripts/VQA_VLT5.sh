@@ -6,7 +6,6 @@ output=snap/vqa/$name
 python -m torch.distributed.launch \
     --nproc_per_node=$1 \
     ../src/vqa.py \
-        --from_scratch true \
         --distributed --multiGPU \
         --train karpathy_train \
         --valid karpathy_val \
@@ -15,10 +14,11 @@ python -m torch.distributed.launch \
         --warmup_ratio 0.1 \
         --clip_grad_norm 5 \
         --lr 5e-5 \
-        --epochs 30 \
+        --epochs 20 \
         --num_workers 4 \
         --backbone 't5-base' \
         --output $output ${@:2} \
+        --load ../snap/pretrain/VLT5/Epoch30 \
         --num_beams 5 \
         --batch_size 20 \
         --valid_batch_size 100 \
