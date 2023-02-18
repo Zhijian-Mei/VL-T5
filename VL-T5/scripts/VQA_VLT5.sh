@@ -3,10 +3,7 @@ name=VLT5
 
 output=snap/vqa/$name
 
-PYTHONPATH=$PYTHONPATH:./src \
-python -m torch.distributed.launch \
-    --nproc_per_node=$1 \
-    src/vqa.py \
+python ../src/vqa.py \
         --distributed --multiGPU \
         --train karpathy_train \
         --valid karpathy_val \
