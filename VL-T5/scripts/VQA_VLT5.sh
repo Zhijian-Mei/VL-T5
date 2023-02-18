@@ -5,7 +5,7 @@ output=snap/vqa/$name
 
 PYTHONPATH=$PYTHONPATH:./src \
 python -m torch.distributed.launch \
-    --nproc_per_node=$NUM_TRAINERS \
+    --nproc_per_node=2 \
     ../src/vqa.py \
         --distributed --multiGPU \
         --train karpathy_train \
