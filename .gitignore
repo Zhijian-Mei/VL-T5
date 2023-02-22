@@ -162,3 +162,5 @@ tags
 
 # .lock
 *.lock
+*.csv
+*.img
