@@ -63,3 +63,7 @@ output_dict = frcnn(
 
 normalized_boxes = output_dict.get("normalized_boxes")
 features = output_dict.get("roi_features")
+
+print(normalized_boxes)
+print()
+print(features)
