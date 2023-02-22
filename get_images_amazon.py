@@ -1,7 +1,7 @@
 import pandas as pd
 
 from tqdm import trange
-
+import wget
 
 df = pd.read_csv('../../FolkScope/TOTAL_typicality_result.csv')
 # df = pd.read_csv('TOTAL_typicality_result.csv')
