@@ -56,6 +56,5 @@ for id,url_list in itemid_itemimgurl.items():
         f.write(requests.get(url,headers=headers).content)
         f.close()
         counter += 1
-    count+= 1
-    if count == 10:
-        quit()
+
+print('Image download finished')
