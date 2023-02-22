@@ -5,10 +5,7 @@ from tqdm import trange
 
 df = pd.read_csv('../../FolkScope/TOTAL_typicality_result.csv')
 # df = pd.read_csv('TOTAL_typicality_result.csv')
-print(df)
-print(df.columns)
-print(df['relation'])
-print(df['assertion'][1])
+
 itemid_itemimgurl = {}
 for i in trange(len(df)):
     ida = df['item_a_id'][i]
@@ -44,7 +41,7 @@ for i in trange(len(df)):
             itemid_itemimgurl[idb].append(url)
 
 
-print(itemid_itemimgurl)
+
 
 import requests
 import shutil
