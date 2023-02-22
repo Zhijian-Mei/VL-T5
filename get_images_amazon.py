@@ -47,7 +47,7 @@ import requests
 import shutil
 
 headers = {'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_10_1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/39.0.2171.95 Safari/537.36'}
-keys = itemid_itemimgurl.keys()
+keys = list(itemid_itemimgurl.keys())
 for i in trange(len(keys)):
     id = keys[i]
     url_list = itemid_itemimgurl[id]
