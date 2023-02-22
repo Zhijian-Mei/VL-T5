@@ -47,7 +47,7 @@ import requests
 import shutil
 
 headers = {'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_10_1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/39.0.2171.95 Safari/537.36'}
-
+count = 0
 for id,url_list in itemid_itemimgurl.items():
     counter = 1
     for url in url_list:
@@ -56,4 +56,6 @@ for id,url_list in itemid_itemimgurl.items():
         f.write(requests.get(url,headers=headers).content)
         f.close()
         counter += 1
-    quit()
+    count+= 1
+    if count == 10:
+        quit()
