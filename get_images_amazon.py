@@ -51,7 +51,7 @@ headers = {'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_10_1) AppleW
 for id,url_list in itemid_itemimgurl.items():
     counter = 1
     for url in url_list:
-        file_name = f'datasets/amazon_imgs/{id}_{counter}.img'
+        file_name = f'datasets/amazon_imgs/{id}_{counter}.jpg'
         f = open(file_name, 'wb')
         f.write(requests.get(url,headers=headers).content)
         f.close()
