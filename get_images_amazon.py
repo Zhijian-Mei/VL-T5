@@ -50,7 +50,7 @@ for id,url_list in itemid_itemimgurl.items():
     counter = 1
     for url in url_list:
         print(url)
-        file_name = wget(url)
+        file_name = wget.download(url)
         quit()
         file_name = f'datasets/amazon_imgs/{id}_{counter}.img'
         f = open(file_name, 'wb')
