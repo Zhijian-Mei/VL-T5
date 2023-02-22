@@ -47,8 +47,10 @@ import requests
 import shutil
 
 headers = {'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_10_1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/39.0.2171.95 Safari/537.36'}
-count = 0
-for id,url_list in itemid_itemimgurl.items():
+keys = itemid_itemimgurl.keys()
+for i in trange(len(keys)):
+    id = keys[i]
+    url_list = itemid_itemimgurl[id]
     counter = 1
     for url in url_list:
         file_name = f'datasets/amazon_imgs/{id}_{counter}.jpg'
@@ -56,6 +58,5 @@ for id,url_list in itemid_itemimgurl.items():
         f.write(requests.get(url,headers=headers).content)
         f.close()
         counter += 1
-    count += 1
-    print(count/len(itemid_itemimgurl),flush=True)
+
 print('Image download finished')
