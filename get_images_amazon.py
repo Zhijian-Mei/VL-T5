@@ -3,8 +3,8 @@ import pandas as pd
 from tqdm import trange
 
 
-# df = pd.read_csv('../../FolkScope/TOTAL_typicality_result.csv')
-df = pd.read_csv('TOTAL_typicality_result.csv')
+df = pd.read_csv('../../FolkScope/TOTAL_typicality_result.csv')
+# df = pd.read_csv('TOTAL_typicality_result.csv')
 print(df)
 print(df.columns)
 print(df['relation'])
