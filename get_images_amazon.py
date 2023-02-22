@@ -1,7 +1,7 @@
 import pandas as pd
 
 from tqdm import trange
-import wget
+
 
 df = pd.read_csv('../../FolkScope/TOTAL_typicality_result.csv')
 # df = pd.read_csv('TOTAL_typicality_result.csv')
@@ -46,15 +46,14 @@ for i in trange(len(df)):
 import requests
 import shutil
 
+headers = {'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_10_1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/39.0.2171.95 Safari/537.36'}
+
 for id,url_list in itemid_itemimgurl.items():
     counter = 1
     for url in url_list:
-        print(url)
-        file_name = wget.download(url)
-        quit()
         file_name = f'datasets/amazon_imgs/{id}_{counter}.img'
         f = open(file_name, 'wb')
-        f.write(requests.get(url).content)
+        f.write(requests.get(url,headers=headers).content)
         f.close()
         counter += 1
     quit()
