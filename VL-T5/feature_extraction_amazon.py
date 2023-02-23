@@ -28,17 +28,20 @@ frcnn_cfg = Config.from_pretrained("unc-nlp/frcnn-vg-finetuned")
 frcnn = GeneralizedRCNN.from_pretrained("unc-nlp/frcnn-vg-finetuned", config=frcnn_cfg)
 image_preprocess = Preprocess(frcnn_cfg)
 
-# for visualizing output
-def showarray(a, fmt='jpeg'):
-    a = np.uint8(np.clip(a, 0, 255))
-    f = io.BytesIO()
-    PIL.Image.fromarray(a).save(f, fmt)
-    display(Image(data=f.getvalue()))
+
+
+# directory = '../datasets/amazon_imgs'
+# counter = 0
+# for filename in os.listdir(directory):
+#     f = os.path.join(directory, filename)
+#     # checking if it is a file
+#     if os.path.isfile(f):
 
 image_filename = wget.download(URL)
 image_dirname = image_filename
 # frcnn_visualizer = SingleImageViz(image_filename, id2obj=objids, id2attr=attrids)
-
+print(image_filename)
+quit()
 images, sizes, scales_yx = image_preprocess(image_filename)
 
 output_dict = frcnn(
@@ -65,5 +68,7 @@ normalized_boxes = output_dict.get("normalized_boxes")
 features = output_dict.get("roi_features")
 
 print(normalized_boxes)
+print(normalized_boxes.shape)
 print()
 print(features)
+print(features.shape)
