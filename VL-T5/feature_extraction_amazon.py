@@ -30,13 +30,16 @@ image_preprocess = Preprocess(frcnn_cfg)
 
 
 
-# directory = '../datasets/amazon_imgs'
-# counter = 0
-# for filename in os.listdir(directory):
-#     f = os.path.join(directory, filename)
-#     # checking if it is a file
-#     if os.path.isfile(f):
-
+directory = '../datasets/amazon_imgs'
+counter = 0
+for filename in os.listdir(directory):
+    id = filename[:len(filename)-6]
+    print(id)
+    quit()
+    f = os.path.join(directory, filename)
+    # checking if it is a file
+    if os.path.isfile(f):
+        pass
 image_filename = wget.download(URL)
 image_dirname = image_filename
 image_filenames = ['input.jpg','input (3).jpg']
