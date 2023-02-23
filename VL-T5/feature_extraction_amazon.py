@@ -28,50 +28,40 @@ frcnn_cfg = Config.from_pretrained("unc-nlp/frcnn-vg-finetuned")
 frcnn = GeneralizedRCNN.from_pretrained("unc-nlp/frcnn-vg-finetuned", config=frcnn_cfg)
 image_preprocess = Preprocess(frcnn_cfg)
 
-
+batch_size = 10
 
 directory = '../datasets/amazon_imgs'
 counter = 0
+id_buffer = []
+image_filenames = []
 for filename in os.listdir(directory):
     id = filename[:len(filename)-6]
-    print(id)
-    quit()
+    id_buffer.append(id)
     f = os.path.join(directory, filename)
     # checking if it is a file
     if os.path.isfile(f):
-        pass
-image_filename = wget.download(URL)
-image_dirname = image_filename
-image_filenames = ['input.jpg','input (3).jpg']
-# frcnn_visualizer = SingleImageViz(image_filename, id2obj=objids, id2attr=attrids)
+        image_filenames.append(f)
+    if len(image_filenames) == batch_size:
+        assert len(image_filenames) == len(id)
+        images, sizes, scales_yx = image_preprocess(image_filenames)
 
-images, sizes, scales_yx = image_preprocess(image_filenames)
+        output_dict = frcnn(
+            images,
+            sizes,
+            scales_yx = scales_yx,
+            padding = 'max_detections',
+            max_detections = frcnn_cfg.max_detections,
+            return_tensors = 'pt'
+        )
 
-output_dict = frcnn(
-    images,
-    sizes,
-    scales_yx = scales_yx,
-    padding = 'max_detections',
-    max_detections = frcnn_cfg.max_detections,
-    return_tensors = 'pt'
-)
+        normalized_boxes = output_dict.get("normalized_boxes")
+        features = output_dict.get("roi_features")
 
-# add boxes and labels to the image
-# frcnn_visualizer.draw_boxes(
-#     output_dict.get("boxes"),
-#     output_dict.get("obj_ids"),
-#     output_dict.get("obj_probs"),
-#     output_dict.get("attr_ids"),
-#     output_dict.get("attr_probs"),
-# )
-
-# showarray(frcnn_visualizer._get_buffer())
-
-normalized_boxes = output_dict.get("normalized_boxes")
-features = output_dict.get("roi_features")
-
-print(normalized_boxes)
-print(normalized_boxes.shape)
-print()
-print(features)
-print(features.shape)
+        print(normalized_boxes)
+        print(normalized_boxes.shape)
+        print()
+        print(features)
+        print(features.shape)
+        quit()
+        id_buffer = []
+        image_filenames = []
