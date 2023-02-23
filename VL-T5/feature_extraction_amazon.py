@@ -39,10 +39,10 @@ image_preprocess = Preprocess(frcnn_cfg)
 
 image_filename = wget.download(URL)
 image_dirname = image_filename
+image_filenames = ['input.jpg','input (3).jpg']
 # frcnn_visualizer = SingleImageViz(image_filename, id2obj=objids, id2attr=attrids)
-print(image_filename)
-quit()
-images, sizes, scales_yx = image_preprocess(image_filename)
+
+images, sizes, scales_yx = image_preprocess(image_filenames)
 
 output_dict = frcnn(
     images,
